@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-# import and print time
-import time
-t = time.localtime()
+print(pd.__version__)
+print(st.__version__)
 
 pd.options.display.max_columns = 11_509
 st.set_page_config(layout="wide")
