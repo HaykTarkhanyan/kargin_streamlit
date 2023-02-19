@@ -84,7 +84,7 @@ if text:
 st.write('Գտնված կարգինների քանակը', len(df_filter))
 st.write('եթե մեծաքանակ կարգիններ են գտնվել փորձեք նշել տեքստ/վայր/լուսավորություն/լեզու որ ավելի լավ փնտրենք')
 # st.write(df_filter)
-max_links = st.number_input("Մենք ցուցադրում ենք ամենաշատը 40 կարգին, եթե ուզում եք դա փոխել արեք դա այստեղ", min_value=40, max_value=509, step=1, value=40)
+max_links = st.number_input("Մենք ցուցադրում ենք 40 կարգին, եթե ուզում եք մեծացնել թիվը փոխեք սա", min_value=40, max_value=509, step=1, value=40)
 
 
 c1, c2, c3, c4 = st.columns(4)
@@ -95,13 +95,17 @@ links = [i for i in links if i]
 
 links = links[:max_links]
 
-for i, link in enumerate(links):  
-    try:
-        with cols[i % 4]:
-            st.video(link)
-    except Exception as e:
-        print(i, link)
-        print(e)
+if len(links) == 0:
+    st.write('Կարգինը չգտվեց, հավանաբար այն դեռ մեր բազայում չկա, կարող եք փորձել թույլացնել պահանջները (հեռացնել վայրը/տեքստը և այլն)')
+    
+else:
+    for i, link in enumerate(links):  
+        try:
+            with cols[i % 4]:
+                st.video(link)
+        except Exception as e:
+            print(i, link)
+            print(e)
 
 print(time.localtime, text, place, light, lang, actor_count)
 
