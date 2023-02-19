@@ -84,7 +84,7 @@ if text:
 st.write('Գտնված կարգինների քանակը', len(df_filter))
 st.write('եթե մեծաքանակ կարգիններ են գտնվել փորձեք նշել տեքստ/վայր/լուսավորություն/լեզու որ ավելի լավ փնտրենք')
 # st.write(df_filter)
-max_links = st.number_input("Մենք ցուցադրում ենք 40 կարգին, եթե ուզում եք մեծացնել թիվը փոխեք սա", min_value=40, max_value=509, step=1, value=40)
+max_links = st.number_input("Մենք ցուցադրում ենք 40 կարգին, դուք կարող եք փոխել դա", min_value=0, max_value=509, step=1, value=40)
 
 
 c1, c2, c3, c4 = st.columns(4)
