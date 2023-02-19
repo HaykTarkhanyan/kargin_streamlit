@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
+import time
 
 pd.options.display.max_columns = 11_509
 st.set_page_config(layout="wide")
 
-st.write('Մի քիչ դանդաղա աշխատելու, եթե պետք լինի շատ վիդյո ցույց տա \n սա լրիվ նախնական վերսիայա, եթե ինչ-որ բան չաշխտաի մի հատ նամակ գրեք t.me/HaykTarkhanyan')
+st.write('Մի քիչ դանդաղա աշխատելու, եթե պետք լինի շատ վիդյո ցույց տա \n սա լրիվ նախնական վերսիայա, եթե ինչ-որ բան չաշխատի մի հատ նամակ գրեք t.me/HaykTarkhanyan')
 
 df = pd.read_csv('kargin_processed.csv')
 
@@ -94,8 +95,6 @@ links = [i for i in links if i]
 
 links = links[:max_links]
 
-print(links)
-
 for i, link in enumerate(links):  
     try:
         with cols[i % 4]:
@@ -103,6 +102,8 @@ for i, link in enumerate(links):
     except Exception as e:
         print(i, link)
         print(e)
+
+print(time.localtime, text, place, light, lang, actor_count)
 
 # with c1:
 #     print(df_filter.iloc[0].links)
