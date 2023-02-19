@@ -1,13 +1,11 @@
 import streamlit as st
 import pandas as pd
 
-print(pd.__version__)
-print(st.__version__)
-
 pd.options.display.max_columns = 11_509
 st.set_page_config(layout="wide")
 
-VIDEOS_TO_SHOW = 40
+st.write('Մի քիչ դանդաղա աշխատելու, եթե պետք լինի շատ վիդյո ցույց տա \n սա լրիվ նախնական վերսիայա, եթե ինչ-որ բան չաշխտաի մի հատ նամակ գրեք t.me/HaykTarkhanyan')
+
 df = pd.read_csv('kargin_processed.csv')
 
 # էս հեչ
@@ -85,23 +83,26 @@ if text:
 st.write('Գտնված կարգինների քանակը', len(df_filter))
 st.write('եթե մեծաքանակ կարգիններ են գտնվել փորձեք նշել տեքստ/վայր/լուսավորություն/լեզու որ ավելի լավ փնտրենք')
 # st.write(df_filter)
+max_links = st.number_input("Մենք ցուցադրում ենք ամենաշատը 40 կարգին, եթե ուզում եք դա փոխել արեք դա այստեղ", min_value=40, max_value=509, step=1, value=40)
 
 
 c1, c2, c3, c4 = st.columns(4)
 cols = [c1, c2, c3, c4]
 
 links = list(df_filter['links'].values)
+links = [i for i in links if i]
 
-# if len(links) < VIDEOS_TO_SHOW:
-#     print(type(links))
-#     links = links + [''] * (VIDEOS_TO_SHOW - len(links))
-# else:
-links = links[:40]
+links = links[:max_links]
+
+print(links)
 
 for i, link in enumerate(links):  
-    with cols[i % 4]:
-        st.video(link)
-
+    try:
+        with cols[i % 4]:
+            st.video(link)
+    except Exception as e:
+        print(i, link)
+        print(e)
 
 # with c1:
 #     print(df_filter.iloc[0].links)
